@@ -15,8 +15,11 @@ const bookingRouter= require("./Routers/booking")
 
 const app = express()
 app.use(cors({
-   origin : "http://localhost:5173",
-  credentials: true 
+ origin: [
+  "http://localhost:5173",
+  "https://your-frontend-url.onrender.com"
+],
+credentials: true
 }));
 
 
@@ -39,7 +42,8 @@ app.use("/api/booking", bookingRouter);
 
 
 
+const PORT = process.env.PORT || 5000;
 
-app.listen(process.env.PORT,() => {
-    console.log("server is running");
-})
+app.listen(PORT, () => {
+    console.log(`server running on port ${PORT}`);
+});
